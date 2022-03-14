@@ -1,0 +1,17 @@
+{
+  "packageId": "wpklYZARbV0Vb",
+  "spaceId": "spczdmQDfBAn5",
+  "entry": "./src/index.tsx",
+  "name": {
+    "zh-CN": "vikaWidgetExcalidraw",
+    "en-US": "vikaWidgetExcalidraw"
+  },
+  "icon": "./package_icon.png",
+  "cover": "./cover.png",
+  "authorIcon": "./author_icon.png",
+  "description": {
+    "zh-CN": "vikaWidgetExcalidraw 的描述",
+    "en-US": "vikaWidgetExcalidraw description"
+  },
+  "sandbox": true
+}
