@@ -1,16 +1,22 @@
-import React from 'react';
-import { initializeWidget } from '@vikadata/widget-sdk';
-import { Setting } from './setting';
+import { initializeWidget, useSelection } from '@vikadata/widget-sdk';
+import { ExcalidrawApp } from './draw_app';
+import React, { useEffect, useState } from 'react';
+import { FileList } from './file_list';
 
-export const HelloWorld: React.FC = () => {
+export const App: React.FC = () => {
+  const [fileId, setFileId] = useState<string | null>(null); // fileId 就是 recordId 一个 record 表示一行记录
+  const selection = useSelection();
+  const selectedRecordId = selection?.recordIds[0];
+  useEffect(() => {
+    selectedRecordId && setFileId(selectedRecordId)
+  }, [selectedRecordId])
+
+  if (!fileId) {
+    return <FileList onOpenFile={setFileId} />
+  }
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
-      <div style={{ flexGrow: 1, overflow: 'auto', padding: '0 8px'}}>
-        hello，world 🚀
-      </div>
-      <Setting />
-    </div>
+    <ExcalidrawApp recordId={fileId} />
   );
 };
 
-initializeWidget(HelloWorld, process.env.WIDGET_PACKAGE_ID);
+initializeWidget(App, process.env.WIDGET_PACKAGE_ID);
